@@ -4,8 +4,10 @@ In this project, I created a relational database that stores three different tab
 
 The employees table was designed to store employees information including their employee id, names, email addresses, hire date, department, gender, salary, and region id. 
 
-In the departments table, two data can be stored: department and division. The department column stores the department name while division categorizes the departments into its own category.
+In the departments table, two data can be stored: department and division. The department column stores the department name while division classifies the departments into its respective category.
 
 Lastly, regions will store information about the location of the store such as regions and countries where they are located. 
 
 Take a look at the database schema here. 
+
+After the database was created and data were inserted, I performed various data analysis using SQL querying techniques.   
