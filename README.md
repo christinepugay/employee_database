@@ -10,4 +10,4 @@ Lastly, regions will store information about the location of the store such as r
 
 After I created the database using PostgreSQL, the data were inserted. Check out the code on how I accomplished this [here](https://github.com/christinepugay/employee_database/blob/main/database_create.sql). 
 
-Using this database, I generated various [data reports](https://github.com/christinepugay/employee_database/blob/main/EmployeeDB_queries.sql) using various SQL querying techniques.   
+Using this database, I generated various data reports using various [SQL querying techniques](https://github.com/christinepugay/employee_database/blob/main/EmployeeDB_queries.sql).   
