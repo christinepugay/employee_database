@@ -8,6 +8,6 @@ In the departments table, two data can be stored: department and division. The d
 
 Lastly, regions will store information about the location of the store such as regions and countries where they are located. 
 
-Take a look at the database schema here. 
+After I created the database using PostgreSQL, the data were inserted. Check out the code on how I accomplished this [here](https://github.com/christinepugay/employee_database/blob/main/database_create.sql). 
 
-After the database was created and data were inserted, I performed various data analysis using SQL querying techniques.   
+Using this database, I generated various [data reports](https://github.com/christinepugay/employee_database/blob/main/EmployeeDB_queries.sql) using various SQL querying techniques.   
