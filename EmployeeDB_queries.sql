@@ -1,6 +1,6 @@
--- Data Analysis using Filtering Commands
+--DATA QUERIES FOR DATA REPORTING
+-- USING THE DATABASE WE CREATED, WE ARE ABLE TO ANSWER VARIOUS BUSINESS REQUIREMENTS BY WRITING QUERYING STATEMENTS
 
--- Using the database that we created, we are able to answer various business questions to create reports
 -- Here we are asked to return all employees where salary us less than $40,000 who work in the Clothing or Pharmacy department in the company
 SELECT * 
 FROM employees
@@ -147,7 +147,35 @@ FROM employees
 WHERE region_id IN (SELECT region_id FROM regions 
 WHERE country IN('Asia','Canada'))
 
+-- WHEN WORKING WITH A HUGE DATABASE, THERE MAY BE SOME INSTANCES WHERE JOINING TWO TABLES TOGETHER IS NECESSARY TO GET THE DATA NEEDED FOR THE REPORT
+-- HERE I AM USING JOINS TO COMBINE DATA SOURCES 
 
+--create a report that shows the first name and country that the employee work in
+
+SELECT first_name, country 
+FROM employees INNER JOIN regions 
+ON employees.region_id = regions.region_id 
+
+-- return all the employee and their department that esist in employees table but does not exist department table 
+SELECT DISTINCT employees.department employees_dept, 
+        departments.department departments_dept
+FROM employees LEFT JOIN departments ON employees.department = departments.department
+
+--Here is a complex query that returns the first name, department, hire date, and country of the first and last employees that were hired
+-- This problem required me to write nested subqueries and inner joins
+-- As I write the queries, I narrated the functions of each line of queries
+
+SELECT first_name, department, hire_date, c.country --start of the outer query, selecting first name, department, hire date, and country
+FROM
+        (SELECT first_name, department, hire_date, region_id -- subquery #1 returns table with first name, department, hire date, and region id
+        FROM (SELECT first_name, department, hire_date, region_id, -- we are using region_id to join the two tables to generate the country
+          (SELECT MIN(hire_date) AS oldest_hire FROM employees),-- gets the oldest hire date
+                (SELECT MAX(hire_date)AS newest_hire FROM employees)-- gets the newest hire date
+                FROM employees) a
+        WHERE hire_date = a.oldest_hire OR hire_date = a.newest_hire) b -- filtering the outer query where hire date matches the oldest and newest hire date from query #1
+        INNER JOIN -- using inner join to join the two sub queries
+        (SELECT country, region_id FROM regions) c -- subquery #2 returns country and region id from regions table
+        ON b.region_id = c.region_id --inner joins using regions id
 
 
 
