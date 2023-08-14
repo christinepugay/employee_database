@@ -127,4 +127,32 @@ FROM employees
 SELECT department, SUM(salary)
 FROM employees
 GROUP BY department
-		
+
+-- Return all employees that works in the electronics division
+
+SELECT * FROM employees -- departments of the employees in the results should be computers, device repair, phones&tablets
+WHERE department IN (SELECT department FROM departments WHERE division = 'Electronics')
+
+-- Employees that works in Asia or Canada that makes over $130,000
+SELECT * FROM employees
+WHERE region_id IN (SELECT region_id FROM regions WHERE country = 'Asia' OR country = 'Canada') 
+		AND salary > 130000
+	
+--Show the first name, department of employees who works in Asia and Canada
+--and how much less they make than the highest paid employees
+	
+SELECT first_name, department,salary,(SELECT MAX(salary)FROM employees),
+(SELECT MAX(salary)FROM employees) - salary AS difference_in_salary
+FROM employees
+WHERE region_id IN (SELECT region_id FROM regions 
+WHERE country IN('Asia','Canada'))
+
+
+
+
+
+
+
+
+
+
